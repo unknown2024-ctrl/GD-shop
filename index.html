@@ -3,7 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#101114" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="GD Shop" />
     <title>GD Level Shop</title>
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./icon.svg" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
@@ -19,6 +25,7 @@
         <a href="#levels">Levels</a>
         <a href="#rules">Rules</a>
         <a href="#order">Order</a>
+        <button class="install-app" id="installApp" type="button" hidden>Install</button>
       </nav>
     </header>
 
@@ -43,6 +50,7 @@
           </p>
           <div class="hero-actions">
             <a class="button primary" href="#order">Start an order</a>
+            <a class="button download" href="./GD-store.exe" download>Download my new app GD-store.exe</a>
             <a class="button secondary" href="#rules">Read rules</a>
           </div>
         </div>
@@ -63,6 +71,11 @@
           <span>03</span>
           <strong>Keep it private</strong>
           <p>Leaked or copied IDs can lead to a site ban and a GD report.</p>
+        </article>
+        <article>
+          <span>04</span>
+          <strong>Use the app</strong>
+          <p>Download GD-store.exe to open this shop from your desktop.</p>
         </article>
       </section>
 

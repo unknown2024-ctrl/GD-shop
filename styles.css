@@ -91,18 +91,28 @@ input {
   gap: 0.5rem;
 }
 
-.top-nav a {
+.top-nav a,
+.install-app {
   border: 1px solid transparent;
+  background: transparent;
   padding: 0.6rem 0.8rem;
   color: var(--muted);
+  cursor: pointer;
   font-weight: 700;
 }
 
 .top-nav a:hover,
-.top-nav a:focus-visible {
+.top-nav a:focus-visible,
+.install-app:hover,
+.install-app:focus-visible {
   border-color: var(--line);
   color: var(--text);
   outline: none;
+}
+
+.install-app {
+  border-color: var(--line);
+  color: var(--text);
 }
 
 main {
@@ -307,6 +317,12 @@ p {
   background: rgba(255, 255, 255, 0.06);
 }
 
+.button.download {
+  background: var(--teal);
+  color: #101114;
+  border-color: #111;
+}
+
 .button:hover,
 .button:focus-visible,
 .select-level:hover,
@@ -319,7 +335,7 @@ p {
 
 .status-strip {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 1px;
   margin: 0 clamp(1rem, 4vw, 4rem);
   overflow: hidden;

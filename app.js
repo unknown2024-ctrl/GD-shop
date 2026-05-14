@@ -2,7 +2,9 @@ const form = document.querySelector("#orderForm");
 const levelGrid = document.querySelector("#levelGrid");
 const levelInput = document.querySelector("#levelName");
 const orderStatus = document.querySelector("#orderStatus");
+const installApp = document.querySelector("#installApp");
 const CASHAPP_URL = "https://cash.app/$jropmsosgsgshs173";
+let deferredInstallPrompt;
 
 const fields = {
   buyerName: document.querySelector("#buyerName"),
@@ -124,4 +126,24 @@ form.addEventListener("submit", async (event) => {
   } catch {
     orderStatus.textContent = "Copy failed. Screenshot this form or message me the same order details.";
   }
+});
+
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js").catch(() => {});
+  });
+}
+
+window.addEventListener("beforeinstallprompt", (event) => {
+  event.preventDefault();
+  deferredInstallPrompt = event;
+  installApp.hidden = false;
+});
+
+installApp.addEventListener("click", async () => {
+  if (!deferredInstallPrompt) return;
+  deferredInstallPrompt.prompt();
+  await deferredInstallPrompt.userChoice;
+  deferredInstallPrompt = null;
+  installApp.hidden = true;
 });
