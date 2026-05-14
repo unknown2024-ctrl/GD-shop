@@ -1,15 +1,14 @@
 const form = document.querySelector("#orderForm");
-const emailPreview = document.querySelector("#emailPreview");
-const copyEmail = document.querySelector("#copyEmail");
 const levelGrid = document.querySelector("#levelGrid");
 const levelInput = document.querySelector("#levelName");
+const orderStatus = document.querySelector("#orderStatus");
+const CASHAPP_URL = "https://cash.app/$jropmsosgsgshs173";
 
 const fields = {
   buyerName: document.querySelector("#buyerName"),
   buyerEmail: document.querySelector("#buyerEmail"),
   gdUsername: document.querySelector("#gdUsername"),
   levelName: levelInput,
-  levelId: document.querySelector("#levelId"),
   paymentNote: document.querySelector("#paymentNote"),
 };
 
@@ -18,34 +17,20 @@ function clean(value, fallback) {
   return trimmed || fallback;
 }
 
-function buildEmail() {
+function buildOrderDetails() {
   const buyer = clean(fields.buyerName.value, "{buyer_name}");
+  const email = clean(fields.buyerEmail.value, "{buyer_email}");
   const gdUser = clean(fields.gdUsername.value, "{gd_username}");
   const levelName = clean(fields.levelName.value, "{level_name}");
-  const levelId = clean(fields.levelId.value, "Sent after payment approval");
-  const paymentNote = clean(fields.paymentNote.value, "Payment approved by shop owner");
+  const paymentNote = clean(fields.paymentNote.value, "{cash_app_note}");
 
-  return `Subject: Thanks for your Geometry Dash level purchase
-
-Hi ${buyer},
-
-Thanks for purchasing one of my Geometry Dash levels.
-
-Level: ${levelName}
+  return `GD Level Shop Order
+Buyer: ${buyer}
+Email: ${email}
 Geometry Dash username: ${gdUser}
-Level ID: ${levelId}
-Payment note: ${paymentNote}
-Cash App: $jropmsosgsgshs173
-
-Please keep this level ID private. By purchasing this level, you agree not to copy, reupload, distribute, resell, leak, or share the level without my permission.
-
-If the level is copied, leaked, or distributed without permission, your account on my site may be banned, and copied versions of the level may be reported in Geometry Dash.
-
-Refund policy:
-If copied or leaked content is taken down within 24 hours, I may consider giving a refund depending on how serious the issue was. If the copied or leaked content is not taken down, or the situation is serious, a refund may not be given.
-
-Thanks again,
-GD Level Shop`;
+Level requested: ${levelName}
+Cash App payment note/name: ${paymentNote}
+Cash App paid to: $jropmsosgsgshs173`;
 }
 
 function escapeText(value) {
@@ -96,7 +81,12 @@ function renderLevels() {
           </div>
           <h3>${name}</h3>
           <p>${description}</p>
-          <button class="select-level" type="button" data-level="${name}" data-price="${price}">Select</button>
+          <div class="level-actions">
+            <button class="select-level" type="button" data-level="${name}" data-price="${price}">Select</button>
+            <a class="cashapp-link" href="${CASHAPP_URL}" target="_blank" rel="noopener" data-level="${name}" data-price="${price}">
+              Pay ${price}
+            </a>
+          </div>
         </article>
       `;
     })
@@ -108,11 +98,17 @@ function renderLevels() {
       fields.levelName.focus();
     });
   });
+
+  document.querySelectorAll(".cashapp-link").forEach((link) => {
+    link.addEventListener("click", () => {
+      fields.levelName.value = `${link.dataset.level} (${link.dataset.price})`;
+    });
+  });
 }
 
 loadFallbackLevelsFile().then(renderLevels);
 
-form.addEventListener("submit", (event) => {
+form.addEventListener("submit", async (event) => {
   event.preventDefault();
 
   if (!form.checkValidity()) {
@@ -120,29 +116,12 @@ form.addEventListener("submit", (event) => {
     return;
   }
 
-  emailPreview.textContent = buildEmail();
-  emailPreview.scrollIntoView({ behavior: "smooth", block: "center" });
-});
-
-copyEmail.addEventListener("click", async () => {
-  const text = emailPreview.textContent.trim();
-
-  if (!text || text === "Fill out the order form to create the buyer email.") {
-    copyEmail.textContent = "Nothing to copy";
-    setTimeout(() => {
-      copyEmail.textContent = "Copy email";
-    }, 1600);
-    return;
-  }
+  const text = buildOrderDetails();
 
   try {
     await navigator.clipboard.writeText(text);
-    copyEmail.textContent = "Copied";
+    orderStatus.textContent = "Order details copied. Send them to me after paying on Cash App.";
   } catch {
-    copyEmail.textContent = "Copy failed";
+    orderStatus.textContent = "Copy failed. Screenshot this form or message me the same order details.";
   }
-
-  setTimeout(() => {
-    copyEmail.textContent = "Copy email";
-  }, 1600);
 });

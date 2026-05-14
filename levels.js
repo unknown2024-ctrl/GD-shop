@@ -7,7 +7,7 @@ window.GD_LEVELS = [
     description: "Regular normal leval."
   },
   {
-    name: "Circuit",
+    name: "Dash Circuit",
     price: "$3",
     difficulty: "Harder",
     difficultyClass: "harder",

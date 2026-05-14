@@ -117,12 +117,13 @@
           <h2 id="order-title">Request a Level ID</h2>
           <p>
             Fill this out after paying $jropmsosgsgshs173 through Cash App. This static page does not send real
-            emails yet, but it creates the exact message you can connect to an email bot later.
+            emails or approve payments by itself. I check Cash App manually, then email you an approval or decline.
           </p>
           <ul class="check-list">
             <li>No GD password required.</li>
             <li>Only your site username, GD username, and order info are needed.</li>
-            <li>The level ID is sent after the order is approved.</li>
+            <li>Use your level name and email in the Cash App note if you can.</li>
+            <li>The private level ID is sent only after the order is approved.</li>
           </ul>
         </div>
 
@@ -144,10 +145,6 @@
             <input id="levelName" name="levelName" type="text" placeholder="Choose from catalog or type one" required />
           </label>
           <label>
-            Approved level ID
-            <input id="levelId" name="levelId" type="text" placeholder="Add after payment approval" />
-          </label>
-          <label>
             Cash App payment note
             <input id="paymentNote" name="paymentNote" type="text" placeholder="Your Cash App name or payment note" />
           </label>
@@ -155,19 +152,9 @@
             <input id="agreeRules" name="agreeRules" type="checkbox" required />
             I agree not to copy, leak, reupload, resell, distribute, or share the paid level without permission.
           </label>
-          <button class="button primary" type="submit">Create email message</button>
+          <button class="button primary" type="submit">Copy order details</button>
+          <p class="order-status" id="orderStatus" role="status"></p>
         </form>
-      </section>
-
-      <section class="email-panel" aria-labelledby="email-title">
-        <div class="email-header">
-          <div>
-            <p class="eyebrow">Bot message</p>
-            <h2 id="email-title">Email Preview</h2>
-          </div>
-          <button class="button secondary" id="copyEmail" type="button">Copy email</button>
-        </div>
-        <pre id="emailPreview">Fill out the order form to create the buyer email.</pre>
       </section>
     </main>
 
