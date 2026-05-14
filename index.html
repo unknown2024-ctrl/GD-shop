@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GD Level Shop</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="GD Level Shop home">
+        <span class="brand-mark">GD</span>
+        <span>
+          <strong>Level Shop</strong>
+          <small>Private Geometry Dash IDs</small>
+        </span>
+      </a>
+      <nav class="top-nav" aria-label="Primary navigation">
+        <a href="#levels">Levels</a>
+        <a href="#rules">Rules</a>
+        <a href="#order">Order</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-art" aria-hidden="true">
+          <div class="gd-scene">
+            <span class="cube"></span>
+            <span class="spike spike-one"></span>
+            <span class="spike spike-two"></span>
+            <span class="portal"></span>
+            <span class="block block-one"></span>
+            <span class="block block-two"></span>
+          </div>
+        </div>
+        <div class="hero-copy">
+          <p class="eyebrow">Custom paid GD levels</p>
+          <h1 id="hero-title">Buy private level IDs made by me.</h1>
+          <p>
+            Pick a level, pay $jropmsosgsgshs173 on Cash App, and get the ID after the order is approved.
+            Every buyer agrees not to copy, leak, reupload, resell, or distribute the level.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#order">Start an order</a>
+            <a class="button secondary" href="#rules">Read rules</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="status-strip" aria-label="Shop process">
+        <article>
+          <span>01</span>
+          <strong>Choose a level</strong>
+          <p>Use the catalog and send the level name in your order.</p>
+        </article>
+        <article>
+          <span>02</span>
+          <strong>Pay on Cash App</strong>
+          <p>Send payment to $jropmsosgsgshs173. Payment must be approved before the level ID is sent.</p>
+        </article>
+        <article>
+          <span>03</span>
+          <strong>Keep it private</strong>
+          <p>Leaked or copied IDs can lead to a site ban and a GD report.</p>
+        </article>
+      </section>
+
+      <section class="section" id="levels" aria-labelledby="levels-title">
+        <div class="section-heading">
+          <p class="eyebrow">Catalog</p>
+          <h2 id="levels-title">Available Levels</h2>
+        </div>
+        <div class="level-grid" id="levelGrid">
+          <p class="muted-empty">Loading levels...</p>
+        </div>
+      </section>
+
+      <section class="policy-band" id="rules" aria-labelledby="rules-title">
+        <div>
+          <p class="eyebrow">Buyer agreement</p>
+          <h2 id="rules-title">Rules and Refunds</h2>
+          <p>
+            Buyers may not copy, reupload, distribute, resell, leak, or share a paid level ID
+            without permission. If a paid level is copied or leaked, the buyer's site account
+            may be banned and copied versions may be reported in Geometry Dash.
+          </p>
+        </div>
+        <div class="policy-list">
+          <article>
+            <strong>24 hour takedown window</strong>
+            <p>
+              If copied or leaked content is taken down within 24 hours, I may consider a refund
+              depending on how serious the issue was.
+            </p>
+          </article>
+          <article>
+            <strong>No guaranteed refund</strong>
+            <p>
+              If the copied or leaked content is not taken down, or the situation is serious,
+              the order may not be refunded.
+            </p>
+          </article>
+          <article>
+            <strong>Site account only</strong>
+            <p>
+              I can ban accounts on this site and report copied GD levels. I do not ask for GD
+              passwords or private GD account access.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section order-layout" id="order" aria-labelledby="order-title">
+        <div class="order-copy">
+          <p class="eyebrow">Order form</p>
+          <h2 id="order-title">Request a Level ID</h2>
+          <p>
+            Fill this out after paying $jropmsosgsgshs173 through Cash App. This static page does not send real
+            emails yet, but it creates the exact message you can connect to an email bot later.
+          </p>
+          <ul class="check-list">
+            <li>No GD password required.</li>
+            <li>Only your site username, GD username, and order info are needed.</li>
+            <li>The level ID is sent after the order is approved.</li>
+          </ul>
+        </div>
+
+        <form class="order-form" id="orderForm">
+          <label>
+            Buyer name
+            <input id="buyerName" name="buyerName" type="text" placeholder="Example: Josh" required />
+          </label>
+          <label>
+            Email
+            <input id="buyerEmail" name="buyerEmail" type="email" placeholder="buyer@example.com" required />
+          </label>
+          <label>
+            Geometry Dash username
+            <input id="gdUsername" name="gdUsername" type="text" placeholder="GD username" required />
+          </label>
+          <label>
+            Level selected
+            <input id="levelName" name="levelName" type="text" placeholder="Choose from catalog or type one" required />
+          </label>
+          <label>
+            Approved level ID
+            <input id="levelId" name="levelId" type="text" placeholder="Add after payment approval" />
+          </label>
+          <label>
+            Cash App payment note
+            <input id="paymentNote" name="paymentNote" type="text" placeholder="Your Cash App name or payment note" />
+          </label>
+          <label class="agreement">
+            <input id="agreeRules" name="agreeRules" type="checkbox" required />
+            I agree not to copy, leak, reupload, resell, distribute, or share the paid level without permission.
+          </label>
+          <button class="button primary" type="submit">Create email message</button>
+        </form>
+      </section>
+
+      <section class="email-panel" aria-labelledby="email-title">
+        <div class="email-header">
+          <div>
+            <p class="eyebrow">Bot message</p>
+            <h2 id="email-title">Email Preview</h2>
+          </div>
+          <button class="button secondary" id="copyEmail" type="button">Copy email</button>
+        </div>
+        <pre id="emailPreview">Fill out the order form to create the buyer email.</pre>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>GD Level Shop. Private level IDs, clear rules, no password collection.</p>
+    </footer>
+
+    <script src="./levels.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
